@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int x=3;
+void TRIM(char* mat )
+{
+  int i,j,aux;
+
+  for(i=0;i<x;i++)
+  {
+    for(j=0;j<i;j++)
+    {
+     aux= *(mat+i*x+j);
+     *(mat+i*x+j)=*(mat+j*x+i);
+     *(mat+j*x+i)=aux;
+    }
+  }
+}
+
+int main() 
+{
+  char A[] = {"como estas"};
+  cout<<"encriptada: "<<endl;
+
+  for(char *p = A; p < A+9; p++)
+  { 
+    cout<< *p <<" ";
+  }
+
+  cout<<endl;
+  //cout<<endl;
+  //cout<<"desincriptada: ";
+  cout<<endl;
+
+	TRIM(A);
+
+
+  for(char *p = A; p < A+9; p++)
+  { 
+    cout<< *p <<" ";
+  }
+}
