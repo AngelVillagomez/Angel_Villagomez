@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+void divis(int a, int n)
+{
+  int q,r;
+  
+  if (a > 0) 
+  {
+    q = a / n;
+   
+    r = a - q*n;
+  }
+
+  else 
+  {
+    q = a / n;
+    r = (q*n)-a;
+  }
+
+  cout << "q: "<<q<<endl<<endl<<"r: "<< r <<endl;
+  
+}
+
+
+int main()
+{
+  
+  int a,n;
+
+  cout << "a: ";
+  cin >> a;
+  cout<<endl;
+
+  cout << "n: ";
+  cin >> n;
+  cout<<endl;
+
+  divis(a,n);
+  
+}
+
