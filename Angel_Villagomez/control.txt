@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+#include<sstream>
+using std::ostringstream;
+using namespace std;
+
+void func(string a,int x)
+{
+  ostringstream cadena; 
+  string::const_iterator iterador1 = a.begin();
+  string mas("xxxxxxxxxxxxxxxxxxxxxxxxxx");
+  string ast("*");
+  string c,t;
+
+  for(int i=0;i<a.length();i=i+4)
+  {
+    c=a.substr(i,x);
+   
+    if(c.length()<x)
+    {
+      c.insert(c.length(),mas,0,x-c.length());
+    }
+    cadena<<c;
+      
+    cout<<c<<endl;
+
+   
+  }
+cout<<"---------------"<<endl;
+
+//cout<<cadena.str();
+//t=cadena.str().substr();
+//cout<<t;
+
+for(int k=0;k<a.length();k=k+4)
+  {
+    t=cadena.str().substr(k,x); 
+    t.insert(t.length(),ast);
+      
+    cout<<t;
+  }
+
+  
+}
+
+int main() 
+{
+  string linea("intente analizar mas profundamente los mensajes recibidos");
+  int x;
+
+  cout<<"bloques: ";
+  cin>>x;
+
+
+  func(linea,x);
+}
