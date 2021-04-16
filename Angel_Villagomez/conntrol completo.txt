@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+#include<sstream>
+using std::ostringstream;
+using namespace std;
+
+
+void seg(string b)
+{
+  cout<<"res: "<<atoi(b.c_str())+2<<endl;
+}
+
+void trs(string c,int y)
+{
+  c=std::to_string(y);
+  cout<<c;
+}
+
+void func(string a,int x)
+{
+  ostringstream cadena; 
+  string::const_iterator iterador1 = a.begin();
+  string mas("xxxxxxxxxxxxxxxxxxxxxxxxxx");
+  string ast("*");
+  string c,t,p;
+
+  for(int i=0;i<a.length();i=i+x)
+  {
+    c=a.substr(i,x);
+   
+    if(c.length()<x)
+    {
+      c.insert(c.length(),mas,0,x-c.length());
+    }
+    cadena<<c;
+      
+    cout<<c<<endl;
+  }
+  cout<<"---------------"<<endl;
+
+  //p=cadena.str();
+  //cout<<"p: "<<p[2]<<endl;
+  for(int k=0;k<a.length();k=k+x)
+  {
+    t=cadena.str().substr(k,x); 
+    t.insert(t.length()-x,ast);   
+    cout<<t;
+    
+  }
+
+  
+}
+
+int main() 
+{
+  string c;
+  string lin("1234567890");
+  string linea("intente analizar mas profundamente los mensajes recibidos");
+  int x,y=1234;
+
+  cout<<"bloques: ";
+  cin>>x;
+
+
+  func(linea,x);
+  cout<<endl<<"-----------------------"<<endl;
+  seg(lin);
+  cout<<endl<<"-----------------------"<<endl;
+  trs(c, y);
+}
