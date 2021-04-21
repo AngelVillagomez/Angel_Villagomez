@@ -1,0 +1,158 @@
+#include <iostream>
+#include <string>
+
+
+using namespace std;
+
+void cesar_n(string alfa,string cod,string k, int key)
+{
+  //cout<<"desen: "<<endl;
+  string z;
+  int tam = cod.length();
+  int  v[tam];
+  
+  /*for (int i=0;i<tam;i++)
+  {
+    cout<<"antes: "<<k[i]<<endl;
+  }*/
+
+  for (int i=0;i<tam;i++)
+  {
+    v[i]=alfa.find(k[i]);
+    //cout<<v[i]<<endl;
+  }
+
+  for(int i=0;i<tam;i++)
+  {
+    int pos = v[i];
+
+    if(pos-key<0)
+    {
+      
+      int resto ;
+      resto = (25+pos+1)-key;
+      //cout<<endl<<"res1: "<<resto<<endl<<endl;
+      pos=resto;
+
+      if(pos<0||resto<0||pos>25||resto>25)
+      {
+        cout<<"NOOOOOOOOOOO"<<endl;
+      }
+      //cout<<"let: "<<alfa[pos]<<endl;
+      //cout<<"new: "<<pos<<endl;
+      z[i]=alfa[pos]; 
+    }
+
+
+    else
+    {
+      
+      //cout<<"let: "<<alfa[pos-key]<<endl;
+      //cout<<"new: "<<pos-key<<endl;
+      
+      z[i]=alfa[pos-key];
+    } 
+    
+  }
+  cout<<"desp:  ";
+
+  for(int i=0;i<cod.size();i++)
+  {
+    cout<<z[i];
+  }
+}
+
+
+
+
+void cesar(string alfa,string cod,int key)
+{
+  int tam = cod.length();
+  int d[tam];
+  string k;
+  
+  cout<<"antes: "<<cod<<endl;
+  for (int i=0;i<cod.length();i++)
+  {
+    d[i]=alfa.find(cod[i]);
+  }
+
+  //cout<<endl<<"**********************************"<<endl;
+    
+  /*for (int i=0;i<tam;i++)
+  {
+    cout<<endl<<"ant: "<<d[i]<<endl;
+  }*/
+
+  //cout<<endl<<"**********************************"<<endl;
+
+  for(int i=0;i<cod.size();i++)
+  {
+    int pos = d[i];
+
+    
+
+    if(pos+key>25)
+    {
+      
+      int resto ;
+    
+     
+      resto = pos-(25-key+1);
+      //cout<<endl<<"res1: "<<resto<<endl<<endl;
+      pos=resto;
+
+      if(pos<0||resto<0)
+      {
+        cout<<"NOOOOOOOOOOO"<<endl;
+      }
+      //cout<<"let: "<<alfa[pos]<<endl;
+      //cout<<"new: "<<pos<<endl;
+      k[i]=alfa[pos]; 
+    }
+
+
+    else
+    {
+      /*
+      cout<<"let: "<<alfa[pos+key]<<endl;
+      cout<<"new: "<<pos+key<<endl;
+      */
+      k[i]=alfa[pos+key];
+    } 
+      
+  }
+
+  cout<<"desp:  ";
+
+  for(int i=0;i<cod.size();i++)
+  {
+    cout<<k[i];
+  }
+
+
+  cout<<endl<<".................................."<<endl;
+
+  cesar_n(alfa, cod, k,  key);
+}
+
+
+
+
+int main() 
+{
+  int key;
+  string alf("abcdefghijklmnopqrstuvwxyz");
+  
+  string code,t;
+  cout<<"mensaje: ";
+  getline(cin,code);
+  cout<<"llave: ";
+  cin>>key;
+  //cout<<endl<<"-------------------------"<<endl;
+  
+
+  cesar(alf,code,key);
+  //cout<<endl<<"-------------------------"<<endl;
+  
+}
