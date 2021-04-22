@@ -1,0 +1,192 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+int divis(int a, int n)
+{
+  int r = a - (a / n) * n;
+	if (r < 0) 
+  {
+		r = r + n;
+	}
+	return r;
+}
+
+string TRIM(string str)
+{
+  str.erase(remove(str.begin(), str.end(),' '), str.end());
+  return str;
+}
+
+void cesar_n(string alfa,string k, int key)
+{
+  string z;
+  int tam = k.length();
+  int  v[tam];
+  
+  for (int i=0;i<tam;i++)
+  {
+    //cout<<"antes: "<<k[i]<<endl;
+  }
+
+  for (int i=0;i<tam;i++)
+  {
+    v[i]=alfa.find(k[i]);
+    //cout<<k[i]<<endl;
+  }
+
+  for(int i=0;i<tam;i++)
+  {
+    int pos = v[i];
+
+    if(pos-key<0)
+    {
+      
+      int resto ;
+      resto = divis(v[i]-key,26);
+      //(25+pos+1)-key;
+      //cout<<endl<<"res1: "<<resto<<endl<<endl;
+      pos=resto;
+
+      if(pos<0||resto<0||pos>25||resto>25)
+      {
+        cout<<"NOOOOOOOOOOO"<<endl;
+      }
+      //cout<<"let: "<<alfa[pos]<<endl;
+      //cout<<"new: "<<pos<<endl;
+      z[i]=alfa[pos]; 
+    }
+
+
+    else
+    {
+      
+      //cout<<"let: "<<alfa[pos-key]<<endl;
+      //cout<<"new: "<<pos-key<<endl;
+      
+      z[i]=alfa[pos-key];
+    } 
+    
+  }
+  cout<<endl<<"**********************************"<<endl;
+  cout<<"desp:  ";
+
+  for(int i=0;i<k.size();i++)
+  {
+    cout<<z[i];
+  }
+}
+
+
+
+
+void cesar(string alfa,string cod,int key)
+{
+  
+  int tam = cod.length();
+  int d[tam];
+  string k;
+  
+  cout<<"antes: "<<cod<<endl;
+  for (int i=0;i<cod.length();i++)
+  {
+    d[i]=alfa.find(cod[i]);
+  }
+
+  //cout<<endl<<"**********************************"<<endl;
+    
+  for (int i=0;i<tam;i++)
+  {
+    //cout<<endl<<"ant: "<<cod[i]<<endl;
+    //cout<<endl<<"omm: "<<d[i]<<endl;
+  }
+
+  cout<<endl<<"**********************************"<<endl;
+
+  for(int i=0;i<cod.size();i++)
+  {
+
+    int pos = d[i];
+
+    
+
+    if(pos+key>25)
+    {
+      int resto ;
+      resto=divis(d[i]+key,26);
+      //resto = pos-(25-key+1);
+      pos=resto;
+      //cout<<"let: "<<alfa[pos]<<endl;
+      //cout<<"new: "<<pos<<endl;
+      
+      k[i]=alfa[pos]; 
+    }
+    
+
+    else
+    {
+      
+
+      //cout<<"let: "<<alfa[pos+key]<<endl;
+      //cout<<"new: "<<pos+key<<endl;
+      
+      k[i]=alfa[pos+key];
+    } 
+    
+
+     
+  }
+
+  cout<<"desp:  ";
+
+  for(int i=0;i<cod.size();i++)
+  {
+    cout<<k[i];
+  }
+
+
+  //cout<<endl<<".................................."<<endl;
+
+  //cesar_n(alfa, cod, k,  key);
+}
+
+
+
+
+int main() 
+{
+  int key,x,y;
+  string alf("abcdefghijklmnopqrstuvwxyz ");
+  string code,t;
+  
+  cout<<"mensaje: ";
+  getline(cin,code);
+
+  cout<<endl<<"llave: ";
+  cin>>key;
+  cout<<endl;
+
+  cout<<"1: encriptar"<<endl;
+  cout<<"2: desincriptar"<<endl;
+  
+  cout << "Ingrese la Opción a ejecutar: ";
+  int opcion = 0;
+  cin >> opcion;
+
+  switch(opcion)
+  {
+    case 1: 
+
+    
+    cesar(alf,TRIM(code),key);
+
+    break;
+
+    case 2:
+    
+    cesar_n(alf,TRIM(code),key);
+    break;
+  }
+
+}
