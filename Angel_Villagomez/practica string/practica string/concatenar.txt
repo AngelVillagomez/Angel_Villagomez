@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
+
+
+int main ()
+{
+  string nombre;
+  string apellido;
+  //string junto;
+
+  cout<<"nombre: ";
+  getline(cin,nombre);
+
+  cout<<"apellido: ";
+  getline(cin,apellido);
+
+  string junto( nombre + apellido );
+
+  cout<<"juntos: "<<junto;
+}

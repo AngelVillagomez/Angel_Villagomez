@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+int main ()
+{
+  string p;
+  string i("******");
+
+  getline(cin,p);
+
+  int tam= p.length();
+  
+  if(tam%2==0)
+  {
+    p.insert( tam/2, i, 0, string::npos );
+  }
+
+  else 
+  {
+    p.insert( tam/2+1, i, 0, string::npos );
+  }
+
+  cout<<p;
+}

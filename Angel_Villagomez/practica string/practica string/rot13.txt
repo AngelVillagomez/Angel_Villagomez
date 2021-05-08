@@ -1,0 +1,136 @@
+
+#include <iostream>
+using namespace std;
+
+
+class rot13
+{
+
+    int rot13 = 13;
+    public:
+        string cifrado(string cadena);
+
+        string descifrado(string cadena);
+
+        int fuerza_bruta(string cifrado);
+            
+};
+
+string rot13::cifrado(string cadena)
+{
+
+    string alfabeto("abcdefghijklmnopqrstuvwxyz");
+    string::const_iterator i(cadena.begin());
+    string mensaje;
+    while(i != cadena.end()){
+        int pos = alfabeto.find(*i);
+        if (pos==string::npos){
+            mensaje+=*i;
+        }
+        else{
+            pos +=rot13;
+            if (pos> alfabeto.length() - 1){
+                pos -= alfabeto.length();
+            }
+            mensaje+=alfabeto[pos];
+        }
+        i++;
+    }
+
+    return mensaje;
+}
+
+string rot13::descifrado(string cadena){
+    
+    string alfabeto("abcdefghijklmnopqrstuvwxyz");
+    string::const_iterator i(cadena.begin());
+    string mensaje;
+
+    while(i != cadena.end()){
+        int pos = alfabeto.find(*i);
+        if (pos==string::npos){
+            mensaje+=*i;
+        }
+        else{
+            pos -=rot13;
+            if (pos> alfabeto.length() - 1){
+                pos += alfabeto.length();
+            }
+            mensaje+=alfabeto[pos];
+        }
+        i++;
+    }
+
+    return mensaje;
+}
+
+int rot13::fuerza_bruta(string cifrado){
+
+    string alfabeto("abcdefghijklmnopqrstuvwxyz");
+
+    string mensaje;
+
+    int llave[cifrado.length()];
+    for (int i = 0; i < cifrado.length(); i++){
+      
+        for (int j = 0; j < alfabeto.length(); j++){
+           
+
+            bool romper = false;    
+            for (int k = 0; k < alfabeto.length()-j; k++){
+                
+                int posPass = j + k;
+
+                if (posPass > alfabeto.length() - 1){
+                    posPass -= alfabeto.length();
+                } 
+                if (cifrado[i] == alfabeto[posPass])
+
+                    llave[i] = k;
+                    romper = true;
+                    break;
+                    cout << llave[i] << endl;
+                    
+            }
+            if (romper)
+            {
+                break;
+            }
+        }
+        
+    }
+    
+    for (int i = 1; i < cifrado.length(); i++)
+    {
+        if (llave[0] != llave[i]){
+            
+            return -1;
+        }
+    }
+
+    return llave[0];
+}
+
+
+int main()
+{
+
+    string mensaje;
+    cout << "mensaje: "; 
+    getline(cin, mensaje);
+    rot13 user01;
+    mensaje = user01.cifrado(mensaje);
+    cout << "cifrado: " << mensaje << endl;
+    string mensaje_descifrado = user01.descifrado(mensaje);
+    cout << "descifrado: " << mensaje_descifrado << endl;
+    
+    int llave = user01.fuerza_bruta(mensaje);
+    if (llave != -1)
+    {
+      cout << " contraseña: " << llave << endl;
+    }
+    else
+    {
+      cout << "no se encontro :(" << endl;
+    }
+}
